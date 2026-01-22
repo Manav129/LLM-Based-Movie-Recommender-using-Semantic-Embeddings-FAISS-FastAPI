@@ -1,0 +1,7 @@
+{
+  "buildCommand": "echo 'Static files ready'",
+  "outputDirectory": "frontend",
+  "public": true,
+  "cleanUrls": false,
+  "functions": {}
+}
