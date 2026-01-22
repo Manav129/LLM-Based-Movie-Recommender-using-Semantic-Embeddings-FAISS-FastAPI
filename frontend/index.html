@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>🎬 Movie Recommendation System</h1>
+            <p class="subtitle">LLM-powered recommendations using embeddings</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="movie-tab">
+                Find Similar Movies
+            </button>
+            <button class="tab-button" data-tab="user-tab">
+                Build Your Taste Profile
+            </button>
+        </div>
+
+        <!-- Tab Content: Movie Recommendations -->
+        <div id="movie-tab" class="tab-content active">
+            <div class="search-section">
+                <h2>Find Movies Similar To...</h2>
+                <p class="description">
+                    Enter a movie title to find similar recommendations based on content (genres, plot, etc.)
+                </p>
+                
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="movieInput" 
+                        placeholder="e.g., The Dark Knight, Interstellar, Inception..."
+                        autocomplete="off"
+                    >
+                    <input 
+                        type="number" 
+                        id="movieCount" 
+                        value="5" 
+                        min="1" 
+                        max="20"
+                        title="Number of recommendations"
+                    >
+                    <button id="movieSearchBtn" class="btn-primary">
+                        Search
+                    </button>
+                </div>
+                
+                <!-- Loading indicator -->
+                <div id="movieLoading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Finding similar movies...</p>
+                </div>
+                
+                <!-- Error message -->
+                <div id="movieError" class="error-message hidden"></div>
+                
+                <!-- Query movie display -->
+                <div id="queryMovie" class="query-movie hidden"></div>
+                
+                <!-- Results -->
+                <div id="movieResults" class="results"></div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Interactive Taste Builder -->
+        <div id="user-tab" class="tab-content">
+            <div class="search-section">
+                <h2>🎯 Build Your Taste Profile</h2>
+                <p class="description">
+                    Rate at least 5 movies below to get personalized recommendations based on YOUR taste!
+                </p>
+                
+                <!-- Progress indicator -->
+                <div id="tasteProgress" class="taste-progress">
+                    <span id="ratedCount">0</span> / 5 movies rated
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <!-- Movies to rate -->
+                <div id="moviesToRate" class="movies-to-rate"></div>
+                
+                <!-- Get recommendations button -->
+                <button id="getTasteRecommendations" class="btn-primary btn-large" disabled>
+                    Get My Personalized Recommendations
+                </button>
+                
+                <!-- Loading indicator -->
+                <div id="tasteLoading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Analyzing your taste and finding perfect matches...</p>
+                </div>
+                
+                <!-- Error message -->
+                <div id="tasteError" class="error-message hidden"></div>
+                
+                <!-- Your ratings summary -->
+                <div id="tasteStats" class="user-stats hidden"></div>
+                
+                <!-- Results -->
+                <div id="tasteResults" class="results"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
