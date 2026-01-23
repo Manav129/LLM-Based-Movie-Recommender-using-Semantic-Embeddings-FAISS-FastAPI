@@ -4,8 +4,11 @@ services:
     env: python
     pythonVersion: 3.11
     plan: free
-    buildCommand: pip install --upgrade pip setuptools && pip install -r requirements.txt
-    startCommand: gunicorn -w 1 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000} app.main:app
+    buildCommand: |
+      pip install --upgrade pip setuptools &&
+      pip install -r requirements.txt &&
+      python scripts/run_pipeline.py
+    startCommand: gunicorn -w 1 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000} app.main:app --timeout 120
     routes:
       - path: /
         matchType: prefix

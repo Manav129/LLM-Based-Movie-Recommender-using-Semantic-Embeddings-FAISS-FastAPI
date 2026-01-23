@@ -11,15 +11,14 @@
 // CONFIGURATION
 // ============================================
 
-// For Vercel deployment, the API_BASE_URL is injected via environment variable
-// This will be set in Vercel's Environment Variables dashboard
-let API_BASE_URL = 'http://127.0.0.1:8000'; // Default for local development
+// API Configuration
+// Priority: 1) window.API_BASE_URL (set in index.html), 2) localhost for development
+let API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000';
 
-// Try to get from window object (set by Vercel via meta tag or inline script)
-if (window.API_BASE_URL) {
-    API_BASE_URL = window.API_BASE_URL;
-} else if (typeof API_BASE_URL_ENV !== 'undefined') {
-    API_BASE_URL = API_BASE_URL_ENV;
+// Show warning if still using placeholder
+if (API_BASE_URL === 'REPLACE_WITH_YOUR_RENDER_URL') {
+    console.warn('⚠️ API_BASE_URL not configured! Update index.html with your Render backend URL.');
+    API_BASE_URL = 'http://127.0.0.1:8000'; // Fallback to localhost
 }
 
 
