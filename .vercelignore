@@ -1,0 +1,24 @@
+# Ignore Python files and dependencies for static frontend deployment
+requirements.txt
+app/
+src/
+scripts/
+artifacts/
+data/
+*.py
+*.pyc
+__pycache__/
+.venv/
+venv/
+
+# Keep only frontend files
+!frontend/
+
+# Ignore large data files
+*.csv
+*.npy
+*.index
+
+# Ignore documentation
+*.md
+!README.md
