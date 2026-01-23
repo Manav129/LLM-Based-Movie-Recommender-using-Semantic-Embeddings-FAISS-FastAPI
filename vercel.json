@@ -3,5 +3,8 @@
   "outputDirectory": "frontend",
   "public": true,
   "cleanUrls": false,
+  "env": {
+    "API_BASE_URL": "@api_base_url"
+  },
   "functions": {}
 }
