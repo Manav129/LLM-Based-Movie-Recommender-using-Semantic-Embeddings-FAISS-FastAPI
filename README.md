@@ -176,48 +176,9 @@ The system is designed to be fast:
 - Recommendation query: <100ms
 - Memory usage: ~200MB with everything loaded
 
-FAISS allows the system to scale to millions of movies without much slowdown. The current flat index does exact search, but you can switch to approximate search for larger datasets.
 
-## Design Decisions
 
-**Why embeddings instead of simple keyword matching?**
-Embeddings capture semantic meaning. "Space adventure" and "galactic journey" would be treated as completely different by keyword matching, but embeddings know they're similar concepts.
 
-**Why FAISS?**
-Computing similarity against every movie is slow. FAISS optimizes this to logarithmic time using smart data structures. It's the same technology that powers search at Facebook scale.
-
-**Why pre-compute embeddings?**
-Generating embeddings on every request would add 500ms+ latency. By pre-computing and loading into memory, we get sub-100ms responses. The trade-off is using more RAM, but for 10k movies it's only ~200MB.
-
-**Why taste profiles instead of user accounts?**
-Traditional collaborative filtering needs extensive user history. The taste profile approach works instantly with minimal input, solves the cold start problem, and doesn't require user accounts or databases.
-
-## Potential Improvements
-
-Some ideas if you want to extend this project:
-
-- Add movie posters using TMDB API
-- Implement caching with Redis for repeated queries
-- Use approximate FAISS indices (IVF or HNSW) for larger datasets
-- Add genre filtering and year range selectors
-- Store user profiles in a database for returning visitors
-- A/B test different recommendation algorithms
-- Add popularity boosting for new releases
-- Export recommendations as shareable lists
-
-## Common Issues
-
-**"ModuleNotFoundError: No module named 'sentence_transformers'"**
-Run `pip install -r requirements.txt` again.
-
-**"FileNotFoundError: embeddings file not found"**
-You need to run `python scripts/run_pipeline.py` first to generate the artifacts.
-
-**"FAISS index returns no results"**
-Make sure you ran the pipeline successfully and the artifacts folder contains all three files.
-
-**Frontend shows CORS errors**
-The API server needs to be running at http://127.0.0.1:8000 before you open the frontend.
 
 ## License
 

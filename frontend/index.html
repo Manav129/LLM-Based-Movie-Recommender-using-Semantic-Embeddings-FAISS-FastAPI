@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="style.css">
     <!-- API Configuration -->
     <script>
-        // Production Render backend URL
-        window.API_BASE_URL = 'https://llm-based-movie-recommender-using-nx10.onrender.com';
+        // Default to localhost for development
+        window.API_BASE_URL = 'http://127.0.0.1:8000';
+        
+        // Production Render backend URL (uncomment when Render is ready)
+        // window.API_BASE_URL = 'https://llm-based-movie-recommender-using-nx10.onrender.com';
         
         // Allow override via URL parameter for testing
         const urlParams = new URLSearchParams(window.location.search);
