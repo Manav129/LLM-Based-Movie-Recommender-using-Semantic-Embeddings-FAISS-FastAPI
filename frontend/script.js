@@ -11,9 +11,16 @@
 // CONFIGURATION
 // ============================================
 
-// Use environment variable or fallback to localhost
-// For Vercel deployment, set API_BASE_URL in Environment Variables
-const API_BASE_URL = process.env.API_BASE_URL || window.API_BASE_URL || 'http://127.0.0.1:8000';
+// For Vercel deployment, the API_BASE_URL is injected via environment variable
+// This will be set in Vercel's Environment Variables dashboard
+let API_BASE_URL = 'http://127.0.0.1:8000'; // Default for local development
+
+// Try to get from window object (set by Vercel via meta tag or inline script)
+if (window.API_BASE_URL) {
+    API_BASE_URL = window.API_BASE_URL;
+} else if (typeof API_BASE_URL_ENV !== 'undefined') {
+    API_BASE_URL = API_BASE_URL_ENV;
+}
 
 
 // ============================================

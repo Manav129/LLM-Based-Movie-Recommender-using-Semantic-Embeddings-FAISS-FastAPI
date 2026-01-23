@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Recommendation System</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Inject API Base URL from environment variable -->
+    <script>
+        // Get from URL parameter first (for testing), then fall back to environment variable
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('api_url')) {
+            window.API_BASE_URL = urlParams.get('api_url');
+        }
+    </script>
 </head>
 <body>
     <!-- Header -->
