@@ -1,16 +1,16 @@
-# Movie Recommendation System
+# 🎬 Movie Recommendation System
 
 A complete movie recommendation system using machine learning embeddings and vector similarity search. This project demonstrates how modern recommendation engines work by combining content-based filtering with collaborative filtering approaches.
 
-## What This Project Does
+## ✨ What This Project Does
 
 The system provides two ways to discover movies:
 
-**Find Similar Movies** - Search for any movie and get recommendations based on similar content, genres, and plot themes. Uses natural language processing to understand what makes movies similar beyond just matching keywords.
+**🔍 Find Similar Movies** - Search for any movie and get recommendations based on similar content, genres, and plot themes. Uses natural language processing to understand what makes movies similar beyond just matching keywords.
 
-**Build Your Taste Profile** - Rate a few movies you know, and the system instantly generates personalized recommendations. No account needed, works right away with just 5 ratings. This is similar to how Netflix or Spotify understand your preferences.
+**⭐ Build Your Taste Profile** - Rate a few movies you know, and the system instantly generates personalized recommendations. No account needed, works right away with just 5 ratings. This is similar to how Netflix or Spotify understand your preferences.
 
-The system currently works with 9,708 movies from the MovieLens dataset and can return recommendations in under 100ms.
+The system currently works with **9,708 movies** from the MovieLens dataset and can return recommendations in under **100ms**.
 
 ## How It Works
 
@@ -98,21 +98,28 @@ python scripts/run_pipeline.py
 
 This step generates embeddings for all movies and builds the FAISS index. It only needs to run once unless you change the dataset.
 
-5. Start the API server
+5. Start the backend API server
 ```bash
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 8000
 ```
 
-The server will start at http://127.0.0.1:8000
+The API server will start at http://127.0.0.1:8000
 
-6. Open the frontend
-
-Simply open `frontend/index.html` in your browser, or use a local server:
+6. Start the frontend (in a new terminal)
 ```bash
-# Using Python's built-in server
 cd frontend
-python -m http.server 8080
-# Then visit http://localhost:8080
+python -m http.server 9000
+```
+
+Then open http://localhost:9000 in your browser
+
+**Quick Start (Both servers)**
+```bash
+# Terminal 1 - Backend
+uvicorn app.main:app --reload
+
+# Terminal 2 - Frontend
+cd frontend && python -m http.server 9000
 ```
 
 ## Using the System
@@ -168,7 +175,7 @@ If you want to use your own dataset, the CSVs need these columns:
 
 After updating the data files, re-run `python scripts/run_pipeline.py` to rebuild the artifacts.
 
-## Performance
+## 🚀 Performance
 
 The system is designed to be fast:
 - Embedding generation: ~45 seconds for 9,708 movies (one-time)
@@ -176,11 +183,33 @@ The system is designed to be fast:
 - Recommendation query: <100ms
 - Memory usage: ~200MB with everything loaded
 
+## 🎯 Features
 
+✅ Content-based movie recommendations  
+✅ Personalized taste profile builder  
+✅ Fast vector similarity search with FAISS  
+✅ Clean, responsive UI  
+✅ RESTful API with auto-generated docs  
+✅ No external dependencies for frontend  
+✅ Works completely offline once set up
 
+## 🐛 Troubleshooting
 
+**Port already in use**
+```bash
+# Kill process on port 8000
+Get-Process -Id (Get-NetTCPConnection -LocalPort 8000).OwningProcess | Stop-Process -Force
+```
 
-## License
+**CORS errors**
+Make sure the frontend is running on an HTTP server (port 9000), not opening index.html directly as `file://`
+
+**Module not found**
+```bash
+pip install -r requirements.txt --upgrade
+```
+
+## 📝 License
 
 MIT License - feel free to use this for learning or build something on top of it.
 
