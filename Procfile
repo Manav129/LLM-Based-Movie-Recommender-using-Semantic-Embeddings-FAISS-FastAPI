@@ -1,1 +1,1 @@
-web: gunicorn -w 1 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000} app.main:app
+web: python scripts/run_pipeline.py && gunicorn -w 1 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT app.main:app --timeout 120
