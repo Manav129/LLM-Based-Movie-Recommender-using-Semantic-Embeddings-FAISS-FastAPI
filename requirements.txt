@@ -1,16 +1,20 @@
 # Core Dependencies
-fastapi==0.109.0
-uvicorn==0.27.0
-gunicorn==21.2.0
-python-multipart==0.0.6
+fastapi>=0.104.0
+uvicorn>=0.24.0
+gunicorn>=21.2.0
+python-multipart>=0.0.5
 
 # Data Processing
-pandas==2.2.0
-numpy==1.26.3
+pandas>=2.2.0
+numpy>=1.26.3
 
 # Machine Learning & Embeddings
 sentence-transformers>=2.3.0
-faiss-cpu==1.7.4
+faiss-cpu>=1.7.4
+
+# Build Dependencies
+setuptools>=68.0
+wheel>=0.41.0
 
 # Utilities
-python-dotenv==1.0.0
+python-dotenv>=1.0.0
